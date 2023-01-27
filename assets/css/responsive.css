@@ -1,0 +1,22 @@
+@media only screen and (max-width: 767px) { /* Responsive MD Bootstrap */
+  .footer-bottom-div {
+    text-align: center !important;
+  }
+  #footer > .top{
+      display: none;
+  }
+  #index-main .wrapper{
+      width: 100% !important;
+  }
+  #index-main .main-thumb,  #index-main .main-thumb img{
+      height: 500px;
+      width: 100% !important;
+  }
+  .thumbnail-offerts img{
+      height: 250px;
+  }
+}
+
+#index-main .main-thumb,  #index-main .main-thumb img{
+      height: 700px;
+}
