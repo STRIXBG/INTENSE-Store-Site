@@ -15,8 +15,22 @@
   .thumbnail-offerts img{
       height: 250px;
   }
+    .advertslide-item img{
+      width: 100%;
+      height: 320px !important;
+  }
 }
 
 #index-main .main-thumb,  #index-main .main-thumb img{
       height: 700px;
+}
+
+.larger-only{
+    display: none !important;
+}
+
+@media only screen and (min-width: 1000px) { /* Large Size */
+    .larger-only{
+        display: block !important;
+    }
 }

@@ -6,11 +6,50 @@ require_once('static-pages/head.php');
 <html lang="en">
     <head>
         <?php
+        if(!defined('ORDER_PRICE'))
+        {
+            define('ORDER_PRICE', 0);
+        }
         require_once('static-pages/head.php');
         require_once('static-pages/cookies.php');
+        require_once 'Database.php';
+        $database = new Database();
+        $mysqli = $database->connect();
+        $orderBy = ORDER_PRICE;
+        if(!isset($_POST['orderBy']))
+        {
+            
+        }
+        
+        
+        if(isset($_GET['page']))
+        {
+            $page = $_GET['page'];  
+        }
+        else
+        {
+            $page = 1;
+        }
+        $limitArticles = 2;
+        $start_from = ($page-1) * $limitArticles;
+
+        
+        if(isset($_GET['search']))
+        {
+            $searched=$_GET['search'];
+            $query = $mysqli->query("SELECT * FROM products WHERE name LIKE '%$searched%';");
+            $foundProducts = mysqli_num_rows($query);
+        }
+        else
+        {
+            header('location:index.php');
+        }
+        
+        $siteCategory = 0;
+        $results_per_page = 3; 
         ?>
         
-        <title>INTENSE Clothing | MALE</title>
+        <title>INTENSE Clothing | <?php echo $searched ?></title>
         <link rel="stylesheet" href="assets/css/cssprogress.css">
         <link href="assets/css/style.css" rel="stylesheet" type="text/css" />
         <link href="assets/css/responsive.css" rel="stylesheet" type="text/css" />
@@ -21,36 +60,69 @@ require_once('static-pages/head.php');
         <main id="search-main" class="mb-5">
             <div class="wrapper">
                 <div class="text-center mt-3 mb-3">
-                    <h4>You searched for: <strong>test</strong> </h4>
+                    <h4>You searched for: <strong><?php echo $searched ?></strong></h4>
                     <hr>
                 </div>
                 <div class="text-center">
-                    <p>11 products found</p>
+                    <p><?php echo $foundProducts; ?> products found</p>
                 </div>
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-2">
-                            <div class="card c-card-1">
-                                <img src="assets/imgs/adidas.png" class="p-3 card-img-top" alt="...">
-                                <div class="card-body p-0 pb-2 pt-3">
-                                    <div class="container">
-                                        <div class="row">
-                                            <div class="col-6">
-                                                Adidas
+                <section class="mt-2">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-2 larger-only border-2 me-2 border-end">
+                                
+                            </div>
+                            <div class="col">
+                                <div class="row">
+                                <?php
+                                if ($query->num_rows > 0) {
+                                    while ($row = $query->fetch_assoc()) {
+                                ?>
+                                <div class="col-lg-2 text-center mt-2 me-4">
+                                    <a class="link-dark" href="">
+                                        <article class="product-box">
+                                            <?php echo '<img src="data:image/jpeg;base64,'.base64_encode($row['image']).'"/>' ?>
+                                            <div class="title">
+                                                <?php
+                                                    echo $row['name'];
+                                                ?>
                                             </div>
-                                            <div class="col-6 text-end">
-                                                200 euro
+                                            <div class="description mt-2">
+                                                <?php
+                                                    echo $row['main-description'];
+                                                ?>
                                             </div>
-                                        </div>
-                                    </div>
+                                            <div class="price mt-2">
+                                                Price: <?php echo $row['price_euro']; ?> euro
+                                            </div>
+                                            <hr>
+                                            <div class="btn btn-buy">
+                                                <i class="fa fa-shopping-cart me-2" aria-hidden="true"></i>Buy now
+                                            </div>
+                                        </article>
+                                    </a>
                                 </div>
-                                <div class="card-footer">
-                                    Buy now
+                                <?php
+                                    }
+                                }
+                                ?>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                </section>
+                <nav class="text-center mt-3">
+                <?php
+                $query = $mysqli->query("SELECT * FROM products WHERE name LIKE '%$searched%' "
+                        . " ORDER BY price_euro DESC LIMIT $start_from, $limitArticles");
+                
+                $total_records = mysqli_num_rows($query);
+                $total_pages = ceil($total_records / $limitArticles); 
+                
+                //TODO
+                ?>
+                    
+                </nav>
             </div>
        </main>
         <?php require_once('static-pages/footer.php'); ?>

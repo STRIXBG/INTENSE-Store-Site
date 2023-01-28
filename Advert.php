@@ -16,7 +16,9 @@ class Advert
     {
         echo '
         <div class="carousel-item advertslide-item active">
+        <a href="'.$link.'">
             <img src="data:image/jpeg;base64,'.base64_encode($image).'"/>
+        </a>
         </div>
          ';
     }

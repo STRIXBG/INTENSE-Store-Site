@@ -13,7 +13,7 @@ $category = new Category();
 $advert = new Advert();
 $popularProduct = new PopularProduct();
 
-$siteCategory = 1;
+$siteCategory = 2;
 ?>
 <html lang="en">
     <head>
@@ -21,7 +21,7 @@ $siteCategory = 1;
         require_once 'static-pages/head.php';
         require_once 'static-pages/cookies.php';
         ?>
-        <title>INTENSE Clothing | MALE</title>
+        <title>INTENSE Clothing | WOMEN</title>
         <link rel="stylesheet" href="assets/css/cssprogress.css">
         <link href="assets/css/style.css" rel="stylesheet" type="text/css" />
         <link href="assets/css/sliders.css" rel="stylesheet" type="text/css" />
@@ -97,14 +97,14 @@ $siteCategory = 1;
             </button>
         </div>
         <div class="mt-2">
-            <section class="mt-1 popular-male-products">
+            <section class="mt-1 popular-women-products">
                 <div class="p-2 text-center">
-                    <h4>Popular Male Products</h4>
+                    <h4>Popular Female Products</h4>
                     <div class="container">
                         <div class="swiper mySwiper">
                             <div class="swiper-wrapper">
                                 <?php
-                                $popularProduct->popularProductsTree();
+                                $popularProduct->popularProductsTree(1);
                                 ?>
                             </div>
                             <div class="mt-4 swiper-pagination"></div>
@@ -128,8 +128,8 @@ $siteCategory = 1;
     <script src="https://cdn.gtranslate.net/widgets/v1.0.1/float.js" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
     <script>
-    var swiper = new Swiper(".mySwiper", {
-        slidesPerView: 2,
+        var swiper = new Swiper(".mySwiper", {
+        slidesPerView: 3,
         spaceBetween: 30,
         freeMode: true,
         pagination: {

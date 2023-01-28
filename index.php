@@ -10,7 +10,7 @@ require_once('static-pages/head.php');
         <?php
         require_once('static-pages/head.php');
         require_once('static-pages/cookies.php');
-        
+      
         $siteCategory = 0;
         ?>
         
@@ -44,7 +44,7 @@ require_once('static-pages/head.php');
                                        </div>
                                        <div class="col-md-6 mt-5 mb-5">
                                            <span class="hover-brown c-button-1">
-                                               <a class="font-weight-bold text-decoration-none text-white p-3" href="female.php">
+                                               <a class="font-weight-bold text-decoration-none text-white p-3" href="women.php">
                                                 SHOP FEMALE
                                             </a>
                                            </span>

@@ -16,20 +16,22 @@
                   </a>
                </li>
                <li class="hover-brown list-inline-item p-3">
-                  <a class="font-weight-bold text-decoration-none text-white p-3" href="female.php">
+                  <a class="font-weight-bold text-decoration-none text-white p-3" href="women.php">
                   WOMEN
                   </a>
                </li>
             </ul>
             <div class="inline-block me-3" style="display: inline-block;">
-               <div class="input-group position-relative" style="width: 350px;">
-                  <input id="main-seach-input" style="border-radius: 12px;" class="form-control form-rounded border-0" type="text" placeholder="Search..">
-                  <div class="input-group-append border-0" style="border-radius: 12px;">
-                     <span id="main-search-icon" class="input-group-text bg-white border-0 position-absolute h-100" style="border-radius: 12px; left:90%;">
-                     <i class="fa fa-search" aria-hidden="true"></i>
-                     </span>
-                  </div>
-               </div>
+                <form action="search.php" method="GET"> 
+                    <div class="input-group position-relative" style="width: 350px;">
+                       <input id="main-seach-input" name="search" style="border-radius: 12px;" class="form-control form-rounded border-0" type="text" placeholder="Search..">
+                       <div class="input-group-append border-0" style="border-radius: 12px;">
+                          <span id="main-search-icon" class="input-group-text bg-white border-0 position-absolute h-100" style="border-radius: 12px; left:90%;">
+                          <i class="fa fa-search" aria-hidden="true"></i>
+                          </span>
+                       </div>
+                    </div>
+                </form>
             </div>
             <div class="inline-block" style="display: inline-block;">
                <div class="ml-2">
@@ -199,8 +201,10 @@
             <div class="search-bar">
                <div class="search-bar-tablecell">
                   <h3>Search For:</h3>
-                  <input type="text" placeholder="Keywords">
-                  <button type="submit">Search <i class="fa fa-search"></i></button>
+                  <form action="search.php" method="post"> 
+                    <input type="text" name="search" placeholder="Keywords">
+                    <button type="submit">Search <i class="fa fa-search"></i></button>
+                  </form>
                </div>
             </div>
          </div>
